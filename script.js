@@ -10,6 +10,8 @@ const numberPendingInvitations = document.querySelector(
 
 const contactsContainer = document.querySelector("#contacts-container");
 
+getStoredPendingInvitations();
+
 function getAllContacts(countContacts) {
   const allDataFromApi = fetch(url + countContacts)
     .then((response) => {
@@ -58,7 +60,7 @@ function getAllContacts(countContacts) {
           dataComplete[i].mutualConnections + " mutual connections";
         contactMutualConnections.setAttribute("class", "text-person");
 
-        storePendingInvitations(PendingInvitations);
+        contactComplete.appendChild(contactMutualConnections);
 
         // render connect button
         const contactConnectButton = document.createElement("button");
@@ -132,5 +134,4 @@ function removePerson(event) {
   getAllContacts(1);
 }
 
-getStoredPendingInvitations();
 getAllContacts(countContacts);

@@ -81,12 +81,8 @@ section {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
-  .invitation-counter {
-    margin: 0 1rem 0 0;
-  }
-
   .invitation-manage {
-    margin: 0 0 0 35rem;
+    margin: 0 0 0 36rem;
   }
 }
 
@@ -104,6 +100,7 @@ article {
   background-position: top;
   background-size: 100% 25%;
   width: 12rem;
+  height: 19rem;
 }
 
 .card-heading {
