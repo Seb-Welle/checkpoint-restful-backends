@@ -1,9 +1,155 @@
-main {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
 
-.people {
-  border: 2px solid black;
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background-grey);
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+:root {
+  --text-color: rgb(0, 0, 0);
+  --background-grey: rgb(209, 209, 209);
+  --background-white: white;
+  --border-card: rgb(168, 167, 167);
+  --text-color-card: rgb(108, 106, 106);
+  --connect-button-color: rgb(49, 75, 181);
+  --remove-button-background: rgba(0, 0, 0, 0.6);
+}
+
+header,
+section {
+  border: none;
+  box-shadow: 1px solid var(--border-card);
+  border-radius: 10px;
+  padding: 2vmin;
+  background-color: var(--background-white);
+}
+
+.invitation-counter {
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.invitation-manage {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+  margin: 0 0 0 10rem;
+  color: var(--text-color);
+}
+
+.heading-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+
+#contacts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+@media screen and (min-width: 680px) {
+  #contacts-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .invitation-manage {
+    margin: 0 0 0 23rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  #contacts-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .invitation-counter {
+    margin: 0 1rem 0 0;
+  }
+
+  .invitation-manage {
+    margin: 0 0 0 35rem;
+  }
+}
+
+article {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   padding: 1rem;
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  padding: 0.5rem;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 100% 25%;
+  width: 12rem;
+}
+
+.card-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.picture-person {
+  border-radius: 50%;
+  width: 8rem;
+}
+
+.name-person {
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0.2rem;
+}
+
+.text-person {
+  font-weight: 400;
+  font-size: 1rem;
+  margin: 0.4rem;
+  color: var(--text-color-card);
+}
+
+#connect-button-person {
+  border-radius: 25px;
+  border: 2px solid var(--connect-button-color);
+  color: var(--connect-button-color);
+  background-color: var(--background-white);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.3rem 3rem;
+}
+
+#remove-button-person {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.4rem;
+  transition: 5ms;
+  background-color: var(--remove-button-background);
+  color: var(--background-white);
 }

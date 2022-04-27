@@ -32,6 +32,7 @@ function getAllContacts(countContacts) {
         const imageContainer = document.createElement("picture");
         const contactImage = document.createElement("img");
         contactImage.src = dataComplete[i].picture;
+        contactImage.setAttribute("class", "picture-person");
         imageContainer.appendChild(contactImage);
 
         contactComplete.appendChild(imageContainer);
@@ -40,12 +41,14 @@ function getAllContacts(countContacts) {
         const contactName = document.createElement("h2");
         contactName.innerText =
           dataComplete[i].name.first + " " + dataComplete[i].name.last;
+        contactName.setAttribute("class", "name-person");
 
         contactComplete.appendChild(contactName);
 
         // render title
         const contactTitle = document.createElement("p");
         contactTitle.innerText = dataComplete[i].title;
+        contactTitle.setAttribute("class", "text-person");
 
         contactComplete.appendChild(contactTitle);
 
@@ -53,13 +56,15 @@ function getAllContacts(countContacts) {
         const contactMutualConnections = document.createElement("p");
         contactMutualConnections.innerText =
           dataComplete[i].mutualConnections + " mutual connections";
+        contactMutualConnections.setAttribute("class", "text-person");
 
-        contactComplete.appendChild(contactMutualConnections);
+        storePendingInvitations(PendingInvitations);
 
         // render connect button
         const contactConnectButton = document.createElement("button");
         contactConnectButton.innerText = "connect";
         contactConnectButton.setAttribute("value", "isPending");
+        contactConnectButton.setAttribute("id", "connect-button-person");
 
         contactComplete.appendChild(contactConnectButton);
 
@@ -77,14 +82,23 @@ function getAllContacts(countContacts) {
           }
           numberPendingInvitations.innerText =
             PendingInvitations + " pending invitations";
+
+          storePendingInvitations(PendingInvitations);
         });
 
         // render remove button
         contactRemoveButton = document.createElement("button");
-        contactRemoveButton.innerText = "";
+        contactRemoveButton.innerText = "x";
+        contactRemoveButton.setAttribute("id", "remove-button-person");
 
         contactComplete.appendChild(contactRemoveButton);
         contactRemoveButton.addEventListener("click", removePerson);
+
+        // render background image
+        if (dataComplete[i].backgroundImage.length > 0) {
+          contactComplete.style.backgroundImage =
+            "url(" + dataComplete[i].backgroundImage + ")";
+        }
 
         // adds all items to the articel
         contactsContainer.appendChild(contactComplete);
@@ -92,7 +106,7 @@ function getAllContacts(countContacts) {
     });
 }
 
-// stores pending invitations into the local storage -> Bug: invitations are not stored
+// stores pending invitations into the local storage
 function storePendingInvitations(PendingInvitations) {
   localStorage.setItem(
     "PendingInvitations",
@@ -118,4 +132,5 @@ function removePerson(event) {
   getAllContacts(1);
 }
 
+getStoredPendingInvitations();
 getAllContacts(countContacts);
